@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 // import styles from './Product.module.css';
 // import Alert from '../../components';
 // import Addproduct from '../../components/Add Product/addproduct';
 
 export default function Product() {
+  const [show, setShow] = useState(false)
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   var id = localStorage.getItem('id');
   const [data, setData] = useState([]);
   const [photo, setPhoto] = useState(null);
@@ -40,6 +47,7 @@ export default function Product() {
           type: 'success',
         });
         messageTime();
+        handleClose()
         getData();
       })
       .catch((err) => {
@@ -403,12 +411,29 @@ export default function Product() {
         <div className='container'>
           <button
             className='btn btn-danger mx-auto col-12'
-            onClick={() => deleteData()}
+            onClick={handleShow}
+            // onClick={() => deleteData()}
           >
             delete {temp?.product_name ?? ''}
           </button>
         </div>
       )}
+
+      {/* <Button variant='danger' onClick={handleShow}>
+        delete modal
+      </Button> */}
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Data</Modal.Title>  
+        </Modal.Header> 
+        <Modal.Body>
+          Are you sure delete this data?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant='danger' onClick={()=>deleteData()}>Yes</Button>
+        </Modal.Footer>
+      </Modal>
 
       {/* alert */}
       {/* {messageShow && (
