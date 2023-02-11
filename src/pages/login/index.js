@@ -31,7 +31,7 @@ export default function Login() {
       </div>
 
       <h5 className='d-flex mt-5 justify-content-center'>
-        Please login with your account
+        Please verif first in your email, and login with your account
       </h5>
       <Form onSubmit={postData}>
         <Form.Group className=' d-flex justify-content-center'>
