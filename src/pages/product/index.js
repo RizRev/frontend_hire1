@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
+import Input from '../../components/Input Form';
 // import styles from './Product.module.css';
 // import Alert from '../../components';
 // import Addproduct from '../../components/Add Product/addproduct';
@@ -11,6 +12,11 @@ export default function Product() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // const [show1, setShow] = useState(false)
+
+  // const handleClose1 = () => setShow(false);
+  // const handleShow1 = () => setShow(true);
 
   var id = localStorage.getItem('id');
   const [data, setData] = useState([]);
@@ -71,19 +77,19 @@ export default function Product() {
     });
   };
 
-  useEffect(() => {
-    selected ? setOnedit(true) : setOnedit(false);
-    !selected &&
-      setInputData({
-        ...inputData,
-        id: '',
-        name: '',
-        stock: '',
-        price: '',
-        price_sold: '',
-      });
-    !selected && setPhoto(null);
-  }, [selected]);
+  // useEffect(() => {
+  //   selected ? setOnedit(true) : setOnedit(false);
+  //   !selected &&
+  //     setInputData({
+  //       ...inputData,
+  //       id: '',
+  //       name: '',
+  //       stock: '',
+  //       price: '',
+  //       price_sold: '',
+  //     });
+  //   !selected && setPhoto(null);
+  // }, [selected]);
 
   const messageTime = () => {
     setTimeout(() => setMessageShow(false), 4000);
@@ -141,88 +147,88 @@ export default function Product() {
       });
   };
 
-  const postForm = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('id', inputData.id);
-    formData.append('name', inputData.name);
-    formData.append('stock', inputData.stock);
-    formData.append('price', inputData.price);
-    formData.append('price_sold', inputData.price_sold);
-    formData.append('photo', photo);
-    console.log(formData);
-    if (!selected) {
-      let token = localStorage.getItem('token');
-      axios
-        .post(
-          `${process.env.REACT_APP_URL_BACKEND}/products`,
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        )
-        .then((res) => {
-          console.log('input data success');
-          console.log(res);
-          setMessageShow(true);
-          setMessage({
-            title: 'success',
-            text: 'post data success',
-            type: 'success',
-          });
-          messageTime();
-          getData();
-        })
-        .catch((err) => {
-          console.log('input data fail');
-          setMessageShow(true);
-          setMessage({ title: 'fail', text: 'post data fail', type: 'danger' });
-          messageTime();
-          console.log(err);
-        });
-    } else {
-      axios
-        .put(
-          `${process.env.REACT_APP_URL_BACKEND}/products/${selected}`,
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        )
-        .then((res) => {
-          console.log('input data success');
-          console.log(res);
-          setMessageShow(true);
-          setMessage({
-            title: 'success',
-            text: 'update data success',
-            type: 'success',
-          });
-          messageTime();
-          getData();
-        })
-        .catch((err) => {
-          console.log('input data fail');
-          setMessageShow(true);
-          setMessage({ title: 'fail', text: 'post data fail', type: 'danger' });
-          messageTime();
-          console.log(err);
-        });
-    }
-  };
-  const handlePhoto = (e) => {
-    setPhoto(e.target.files[0]);
-    console.log(e.target.files[0]);
-  };
+  // const postForm = (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append('id', inputData.id);
+  //   formData.append('name', inputData.name);
+  //   formData.append('stock', inputData.stock);
+  //   formData.append('price', inputData.price);
+  //   formData.append('price_sold', inputData.price_sold);
+  //   formData.append('photo', photo);
+  //   console.log(formData);
+  //   if (!selected) {
+  //     let token = localStorage.getItem('token');
+  //     axios
+  //       .post(
+  //         `${process.env.REACT_APP_URL_BACKEND}/products`,
+  //         formData,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         },
+  //         {
+  //           headers: {
+  //             'Content-Type': 'multipart/form-data',
+  //           },
+  //         }
+  //       )
+  //       .then((res) => {
+  //         console.log('input data success');
+  //         console.log(res);
+  //         setMessageShow(true);
+  //         setMessage({
+  //           title: 'success',
+  //           text: 'post data success',
+  //           type: 'success',
+  //         });
+  //         messageTime();
+  //         getData();
+  //       })
+  //       .catch((err) => {
+  //         console.log('input data fail');
+  //         setMessageShow(true);
+  //         setMessage({ title: 'fail', text: 'post data fail', type: 'danger' });
+  //         messageTime();
+  //         console.log(err);
+  //       });
+  //   } else {
+  //     axios
+  //       .put(
+  //         `${process.env.REACT_APP_URL_BACKEND}/products/${selected}`,
+  //         formData,
+  //         {
+  //           headers: {
+  //             'Content-Type': 'multipart/form-data',
+  //           },
+  //         }
+  //       )
+  //       .then((res) => {
+  //         console.log('input data success');
+  //         console.log(res);
+  //         setMessageShow(true);
+  //         setMessage({
+  //           title: 'success',
+  //           text: 'update data success',
+  //           type: 'success',
+  //         });
+  //         messageTime();
+  //         getData();
+  //       })
+  //       .catch((err) => {
+  //         console.log('input data fail');
+  //         setMessageShow(true);
+  //         setMessage({ title: 'fail', text: 'post data fail', type: 'danger' });
+  //         messageTime();
+  //         console.log(err);
+  //       });
+  //   }
+  // };
+  // const handlePhoto = (e) => {
+  //   setPhoto(e.target.files[0]);
+  //   console.log(e.target.files[0]);
+  // };
 
   const handleChange = (e) => {
     setInputData({
@@ -234,15 +240,15 @@ export default function Product() {
 
   return (
     <div>
+      <Input/>
       {/* <Addproduct/> */}
 
       {/* post data */}
-      <form
+      {/* <form
         onSubmit={postForm}
         className='container mt-3 p-2 border border-3 rounded border-danger '
       >
         {onedit ? <h4>Edit Product</h4> : <h4>Add Product</h4>}
-        {/* <h4>Add Recipe</h4> */}
         <input
           className='form-control'
           style={{ marginBottom: '15px' }}
@@ -297,7 +303,7 @@ export default function Product() {
             post
           </button>
         )}
-      </form>
+      </form> */}
 
       {/* filter */}
       <div className='container bg-danger mt-2 p-2 rounded'>

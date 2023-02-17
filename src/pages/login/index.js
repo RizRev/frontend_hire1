@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import { Modal } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { loginUser } from '../../redux/action/login';
@@ -8,6 +9,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 export default function Login() {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -51,11 +53,11 @@ export default function Login() {
             placeholder='Password'
           />
         </Form.Group>
-        <Link to='/ResetPW'>
+        {/* <Link to='/ResetPW'>
           <a className='text-danger mt-5 d-flex justify-content-center' href=''>
             Forgot password?
           </a>
-        </Link>
+        </Link> */}
         <div className=' d-flex justify-content-center mt-3'>
           <Button
             className='rounded-pill'
@@ -68,12 +70,12 @@ export default function Login() {
         </div>
 
         <p className=' d-flex justify-content-center mt-4'>
-          Don't have a Blanja account?
-          <Link to='/SignUp_cus'>
+          Don't have a Blanja account? 
+          <Link to='/register'>
             <a className='text-danger' href=''>
               Register
             </a>
-          </Link>{' '}
+          </Link>
         </p>
       </Form>
     </Container>

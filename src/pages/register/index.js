@@ -102,11 +102,11 @@ export default function Register() {
 
         <p className=' d-flex justify-content-center mt-4'>
           Already have a Blanja account?
-          <Link to='/Login_cus'>
+          <Link to='/login'>
             <a className='text-danger' href=''>
               Login
             </a>
-          </Link>{' '}
+          </Link>
         </p>
       </Form>
     </Container>
